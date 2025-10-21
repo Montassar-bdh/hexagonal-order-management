@@ -1,7 +1,6 @@
 from application.services import UserService, ProductService, OrderService
 from infrastructure.adapters import SQLAlchemyUserAdapter, SQLAlchemyProductAdapter, SQLAlchemyOrderAdapter
 from infrastructure.models import SQLAlchemyUser, SQLAlchemyOrder, SQLAlchemyProduct
-# from infrastructure.database import get_db_session
 from application.dtos import UserDTO, ProductDTO, OrderDTO
 
 def main():
