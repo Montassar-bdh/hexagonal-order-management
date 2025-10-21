@@ -6,11 +6,8 @@ from infrastructure.models import SQLAlchemyUser, SQLAlchemyProduct, SQLAlchemyO
 
 
 class SQLAlchemyUserAdapter(UserRepository):
-    def __init__(self, engine_url: str, connect_args: dict=None):
-        if connect_args is None:
-            self.engine = create_engine(engine_url)
-        else:
-            self.engine = create_engine(engine_url, connect_args=connect_args)
+    def __init__(self, engine_url: str):
+        self.engine = create_engine(engine_url)
         SQLAlchemyUser.__table__.create(self.engine)
         self.Session = sessionmaker(bind=self.engine)
 
