@@ -1,7 +1,7 @@
 from dependency_injector import containers, providers
 
 from application.services import OrderService, ProductService, UserService
-from infrastructure.adapters import (SQLAlchemyOrderAdapter,
+from infrastructure.persistence.adapters import (SQLAlchemyOrderAdapter,
                                      SQLAlchemyProductAdapter,
                                      SQLAlchemyUserAdapter)
 
