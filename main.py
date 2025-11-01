@@ -1,24 +1,16 @@
+from dependency_injector.wiring import inject, Provide
+
 from application.dtos import OrderDTO, ProductDTO, UserDTO
 from application.services import OrderService, ProductService, UserService
-from infrastructure.adapters import (SQLAlchemyOrderAdapter,
-                                     SQLAlchemyProductAdapter,
-                                     SQLAlchemyUserAdapter)
-from infrastructure.models import (SQLAlchemyOrder, SQLAlchemyProduct,
-                                   SQLAlchemyUser)
+from DI.container import Container
 
 
-def main():
-    db_url = 'sqlite:///example.db'  # Example SQLite database URL
-
-    # Initialize repositories
-    user_repo = SQLAlchemyUserAdapter(db_url)
-    product_repo = SQLAlchemyProductAdapter(db_url)
-    order_repo = SQLAlchemyOrderAdapter(db_url)
-
-    # Initialize services
-    user_service = UserService(user_repo)
-    product_service = ProductService(product_repo)
-    order_service = OrderService(order_repo, user_repo, product_repo)
+@inject
+def main(
+    user_service: UserService = Provide[Container.user_service],
+    product_service: ProductService = Provide[Container.product_service],
+    order_service: OrderService = Provide[Container.order_service]
+):
 
     # Create and save a user
     user_dto = UserDTO(id='1', name='Alice', email='alice@example.com')
@@ -35,7 +27,15 @@ def main():
     # Retrieve and print the order
     retrieved_order = order_service.get_order('5001')
     print(f"Retrieved Order: {retrieved_order}")
+    
+    order_service.delete_order()
 
 
 if __name__ == '__main__':
+    db_url = 'sqlite:///example.db'  # Example SQLite database URL
+
+    container = Container()
+    container.config.db_url.from_value(db_url)
+    container.init_resources()
+    container.wire(modules=[__name__])
     main()
