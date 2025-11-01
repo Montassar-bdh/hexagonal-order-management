@@ -1,4 +1,3 @@
-# from infrastructure.database import get_db_session
 from application.dtos import OrderDTO, ProductDTO, UserDTO
 from application.services import OrderService, ProductService, UserService
 from infrastructure.adapters import (SQLAlchemyOrderAdapter,
