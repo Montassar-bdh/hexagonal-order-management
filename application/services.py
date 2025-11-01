@@ -1,5 +1,6 @@
-from domain.ports import UserRepository, ProductRepository, OrderRepository
-from application.dtos import UserDTO, ProductDTO, OrderDTO
+from application.dtos import OrderDTO, ProductDTO, UserDTO
+from domain.ports import OrderRepository, ProductRepository, UserRepository
+
 
 class UserService:
     def __init__(self, user_repo: UserRepository):

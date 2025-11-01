@@ -1,8 +1,12 @@
-from application.services import UserService, ProductService, OrderService
-from infrastructure.adapters import SQLAlchemyUserAdapter, SQLAlchemyProductAdapter, SQLAlchemyOrderAdapter
-from infrastructure.models import SQLAlchemyUser, SQLAlchemyOrder, SQLAlchemyProduct
 # from infrastructure.database import get_db_session
-from application.dtos import UserDTO, ProductDTO, OrderDTO
+from application.dtos import OrderDTO, ProductDTO, UserDTO
+from application.services import OrderService, ProductService, UserService
+from infrastructure.adapters import (SQLAlchemyOrderAdapter,
+                                     SQLAlchemyProductAdapter,
+                                     SQLAlchemyUserAdapter)
+from infrastructure.models import (SQLAlchemyOrder, SQLAlchemyProduct,
+                                   SQLAlchemyUser)
+
 
 def main():
     db_url = 'sqlite:///example.db'  # Example SQLite database URL

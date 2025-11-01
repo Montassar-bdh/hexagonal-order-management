@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
+
 from domain.models import Order
+
 
 class UserRepository(ABC):
     @abstractmethod

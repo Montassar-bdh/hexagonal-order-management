@@ -1,7 +1,10 @@
-from sqlalchemy import Column, String, Float, Integer, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Float, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
-from domain.models import User as DomainUser, Product as DomainProduct, Order as DomainOrder
+from sqlalchemy.orm import relationship
+
+from domain.models import Order as DomainOrder
+from domain.models import Product as DomainProduct
+from domain.models import User as DomainUser
 
 Base = declarative_base()
 

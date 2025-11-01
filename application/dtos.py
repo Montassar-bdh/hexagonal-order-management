@@ -1,6 +1,9 @@
-from pydantic import BaseModel, EmailStr, confloat
-from domain.models import User, Product, Order
 from typing import List
+
+from pydantic import BaseModel, EmailStr, confloat
+
+from domain.models import Order, Product, User
+
 
 class UserDTO(BaseModel):
     id: str

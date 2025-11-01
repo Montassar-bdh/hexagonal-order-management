@@ -1,8 +1,9 @@
-from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
-from domain.ports import UserRepository, ProductRepository, OrderRepository
-from infrastructure.models import SQLAlchemyUser, SQLAlchemyProduct, SQLAlchemyOrder
+from sqlalchemy.orm import sessionmaker
 
+from domain.ports import OrderRepository, ProductRepository, UserRepository
+from infrastructure.models import (SQLAlchemyOrder, SQLAlchemyProduct,
+                                   SQLAlchemyUser)
 
 
 class SQLAlchemyUserAdapter(UserRepository):
