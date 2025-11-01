@@ -7,8 +7,8 @@ from infrastructure.models import (SQLAlchemyOrder, SQLAlchemyProduct,
 
 
 class SQLAlchemyUserAdapter(UserRepository):
-    def __init__(self, engine_url: str):
-        self.engine = create_engine(engine_url)
+    def __init__(self, db_url: str):
+        self.engine = create_engine(db_url)
         SQLAlchemyUser.__table__.create(self.engine)
         self.Session = sessionmaker(bind=self.engine)
 
@@ -32,8 +32,8 @@ class SQLAlchemyUserAdapter(UserRepository):
 
 
 class SQLAlchemyProductAdapter(ProductRepository):
-    def __init__(self, engine_url: str):
-        self.engine = create_engine(engine_url)
+    def __init__(self, db_url: str):
+        self.engine = create_engine(db_url)
         self.Session = sessionmaker(bind=self.engine)
         SQLAlchemyProduct.__table__.create(self.engine)
     def save(self, product):
@@ -56,8 +56,8 @@ class SQLAlchemyProductAdapter(ProductRepository):
 
 
 class SQLAlchemyOrderAdapter(OrderRepository):
-    def __init__(self, engine_url: str):
-        self.engine = create_engine(engine_url)
+    def __init__(self, db_url: str):
+        self.engine = create_engine(db_url)
         self.Session = sessionmaker(bind=self.engine)
         SQLAlchemyOrder.__table__.create(self.engine)
     
