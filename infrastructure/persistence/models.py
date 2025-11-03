@@ -2,9 +2,9 @@ from sqlalchemy import Column, Float, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
-from domain.models import Order as DomainOrder
-from domain.models import Product as DomainProduct
-from domain.models import User as DomainUser
+from core.entities.order import Order as DomainOrder
+from core.entities.product import Product as DomainProduct
+from core.entities.user import User as DomainUser
 
 Base = declarative_base()
 

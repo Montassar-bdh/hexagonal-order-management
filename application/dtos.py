@@ -2,7 +2,9 @@ from typing import List
 
 from pydantic import BaseModel, EmailStr, confloat
 
-from domain.models import Order, Product, User
+from core.entities.order import Order
+from core.entities.product import Product
+from core.entities.user import User
 
 
 class UserDTO(BaseModel):
