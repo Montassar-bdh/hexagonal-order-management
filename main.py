@@ -1,7 +1,9 @@
 from dependency_injector.wiring import inject, Provide
 
 from application.dtos import OrderDTO, ProductDTO, UserDTO
-from application.services import OrderService, ProductService, UserService
+from application.services.order_service import OrderService
+from application.services.product_service import ProductService
+from application.services.user_service import UserService
 from DI.container import Container
 
 
@@ -27,8 +29,7 @@ def main(
     # Retrieve and print the order
     retrieved_order = order_service.get_order('5001')
     print(f"Retrieved Order: {retrieved_order}")
-    
-    order_service.delete_order()
+
 
 
 if __name__ == '__main__':
