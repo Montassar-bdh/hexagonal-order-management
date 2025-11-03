@@ -1,7 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from domain.ports import OrderRepository, ProductRepository, UserRepository
+from core.ports.repositories.order_repository_port import OrderRepository
+from core.ports.repositories.product_repository_port import ProductRepository
+from core.ports.repositories.user_repository_port import UserRepository
 from infrastructure.persistence.models import (SQLAlchemyOrder, SQLAlchemyProduct,
                                    SQLAlchemyUser)
 

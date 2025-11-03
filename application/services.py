@@ -1,5 +1,7 @@
 from application.dtos import OrderDTO, ProductDTO, UserDTO
-from domain.ports import OrderRepository, ProductRepository, UserRepository
+from core.ports.repositories.order_repository_port import OrderRepository
+from core.ports.repositories.product_repository_port import ProductRepository
+from core.ports.repositories.user_repository_port import UserRepository
 
 
 class UserService:
@@ -7,8 +9,8 @@ class UserService:
         self.user_repo = user_repo
 
     def create_user(self, user_dto: UserDTO) -> None:
-        user = user_dto.to_domain()  # Convert DTO to domain model
-        self.user_repo.save(user)  # Save domain model to the repository
+        user = user_dto.to_domain()  # Convert DTO to core model
+        self.user_repo.save(user)  # Save core model to the repository
 
     def get_user(self, user_id: str) -> UserDTO:
         user = self.user_repo.get(user_id)
@@ -23,8 +25,8 @@ class ProductService:
         self.product_repo = product_repo
 
     def create_product(self, product_dto: ProductDTO) -> None:
-        product = product_dto.to_domain()  # Convert DTO to domain model
-        self.product_repo.save(product)  # Save domain model to the repository
+        product = product_dto.to_domain()  # Convert DTO to core model
+        self.product_repo.save(product)  # Save core model to the repository
 
     def get_product(self, product_id: str) -> ProductDTO:
         product = self.product_repo.get(product_id)
@@ -47,8 +49,8 @@ class OrderService:
         if not user or not product:
             raise ValueError("Invalid user or product.")
         
-        order = order_dto.to_domain(user=user, product=product)  # Convert DTO to domain model
-        self.order_repo.save(order)  # Save domain model to the repository
+        order = order_dto.to_domain(user=user, product=product)  # Convert DTO to core model
+        self.order_repo.save(order)  # Save core model to the repository
 
     def get_order(self, order_id: str) -> OrderDTO:
         order = self.order_repo.get(order_id)
