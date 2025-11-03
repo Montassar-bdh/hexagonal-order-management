@@ -3,9 +3,10 @@ from dependency_injector import containers, providers
 from application.services.order_service import OrderService
 from application.services.product_service import ProductService
 from application.services.user_service import UserService
-from infrastructure.persistence.adapters import (SQLAlchemyOrderAdapter,
-                                     SQLAlchemyProductAdapter,
-                                     SQLAlchemyUserAdapter)
+from infrastructure.adapters.repositories.order_repository_impl import SQLAlchemyOrderAdapter
+from infrastructure.adapters.repositories.product_repository_impl import SQLAlchemyProductAdapter
+from infrastructure.adapters.repositories.user_repository_impl import SQLAlchemyUserAdapter
+
 
 class Container(containers.DeclarativeContainer):
     config = providers.Configuration()
