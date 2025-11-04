@@ -13,8 +13,8 @@ class OrderModel(Base):
     product_id = Column(String, ForeignKey('products.id'))
     quantity = Column(Integer)
 
-    user = relationship('SQLAlchemyUser')
-    product = relationship('SQLAlchemyProduct')
+    user = relationship('UserModel')
+    product = relationship('ProductModel')
 
     def to_domain(self):
         return DomainOrder(id=self.id, user=self.user.to_domain(), product=self.product.to_domain(), quantity=self.quantity)
