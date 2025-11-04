@@ -5,6 +5,7 @@ from application.services.order_service import OrderService
 from application.services.product_service import ProductService
 from application.services.user_service import UserService
 from DI.container import Container
+from infrastructure.persistence.sql.init_db import init_db
 
 
 @inject
@@ -13,6 +14,8 @@ def main(
     product_service: ProductService = Provide[Container.product_service],
     order_service: OrderService = Provide[Container.order_service]
 ):
+
+    init_db()
 
     # Create and save a user
     user_dto = UserDTO(id='1', name='Alice', email='alice@example.com')
