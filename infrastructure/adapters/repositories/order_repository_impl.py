@@ -10,15 +10,18 @@ class SQLAlchemyOrderAdapter(OrderRepository):
 
     def save(self, order):
         db_order = OrderModel.from_domain(order)
-        self.session.add(db_order)
-        self.session.commit()
+        with self.session as session:
+            session.add(db_order)
+            session.commit()
 
     def get(self, order_id: str):
-        db_order = self.session.query(OrderModel).filter(OrderModel.id == order_id).first()
-        return db_order.to_domain() if db_order else None
+        with self.session as session:
+            db_order = session.query(OrderModel).filter(OrderModel.id == order_id).first()
+            return db_order.to_domain() if db_order else None
 
     def delete(self, order_id: str):
-        db_order = self.session.query(OrderModel).filter(OrderModel.id == order_id).first()
-        if db_order:
-            self.session.delete(db_order)
-            self.session.commit()
+        with self.session as session:
+            db_order = session.query(OrderModel).filter(OrderModel.id == order_id).first()
+            if db_order:
+                self.session.delete(db_order)
+                self.session.commit()
