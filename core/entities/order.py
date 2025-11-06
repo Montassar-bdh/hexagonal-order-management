@@ -1,6 +1,10 @@
+from dataclasses import dataclass
+
 from core.entities.product import Product
 from core.entities.user import User
 
+
+@dataclass
 class Order:
     def __init__(self, id: str, user: User, product: Product, quantity: int):
         if quantity <= 0:

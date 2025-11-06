@@ -1,3 +1,7 @@
+from dataclasses import dataclass
+
+
+@dataclass
 class User:
     def __init__(self, id: str, name: str, email: str):
         self.id = id
